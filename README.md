@@ -13,3 +13,21 @@ php artisan make:controller HotelController
 php artisan make:controller RoomController
 php artisan make:controller BookingController
 
+=======================================================
+
+routes/api.php
+
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookingController;
+
+Route::get('/hotels', [HotelController::class, 'index']);
+Route::get('/hotels/{id}', [HotelController::class, 'show']);
+Route::get('/rooms', [RoomController::class, 'index']);
+Route::get('/rooms/{id}', [RoomController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/book', [BookingController::class, 'bookRoom']);
+});
+
+
